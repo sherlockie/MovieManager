@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="MM.posterWall"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MM"
+             mc:Ignorable="d" 
+             x:Name="wall"
+             Background="Transparent"
+             Height="45"
+             Width="360">
+    <Grid>
+        <Canvas VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="{Binding ElementName=wall, Path=Height}" ClipToBounds="True">
+            <StackPanel x:Name="wallBack" Width="{Binding ElementName=wall, Path=Width}">
+                <StackPanel.RenderTransform>
+                    <TranslateTransform Y="0"/>
+                </StackPanel.RenderTransform>
+                <ListBox x:Name="posterList" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="Transparent">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </StackPanel>
+            <Canvas.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="0" To="100" Duration="0:0:5" RepeatBehavior="Forever"
+                                             Storyboard.TargetName="posterList" Storyboard.TargetProperty="RenderTransform.Y"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Canvas.Triggers>
+        </Canvas> 
+    </Grid>
+</UserControl>

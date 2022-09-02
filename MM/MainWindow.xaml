@@ -1,0 +1,71 @@
+﻿<Window x:Class="MM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MM"
+        mc:Ignorable="d"
+        Title="MovieManager" Height="900" Width="1600"
+        WindowStyle="None" AllowsTransparency="True" Background="Black" MouseLeftButtonDown="Window_MouseLeftButtonDown" Icon="images/movie.png"
+        Focusable="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Name="mainGrid" Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!--顶部菜单栏-->
+        <Grid Grid.Row="0" Background="#FF282828">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <!--退出按钮-->
+            <Button Name="exitButton" Grid.Row="0" Grid.Column="6" Click="ExitButton_Click" Style="{StaticResource exitButtonStyle}" ToolTip="Exit"/>
+            <!--菜单按钮-->
+            <Button Name="menuButton" Grid.Row="0" Grid.Column="0" Click="MenuButton_Click" Style="{StaticResource menuButtonStyle}" ToolTip="Menu"/>
+            <!--主页按钮-->
+            <Button Name="homeButton" Grid.Row="0" Grid.Column="2" Click="HomeButton_Click" Style="{StaticResource homeButtonStyle}" ToolTip="Home"/>
+            <!--搜索按钮-->
+            <Button Name="searchButton" Grid.Row="0" Grid.Column="4" Click="SearchButton_Click" Style="{StaticResource searchButtonStyle}" ToolTip="Search"/>
+        </Grid>
+
+        <Popup x:Name="popMenu" StaysOpen="False" PopupAnimation="Fade" Width="150" Height="Auto" PlacementTarget="{Binding ElementName=menuButton}" Placement="Bottom" AllowsTransparency="True">
+            <Border BorderThickness="0.5">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                </Border.BorderBrush>
+                <StackPanel Width="150" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF4A4B4B"  Orientation="Vertical">
+                    <!--新增文件选项-->
+                    <Button Style="{StaticResource popButtonStyle}" Content="Add new film"/>
+                    <!--显示信息选项-->
+                    <Button x:Name="aboutButton" Click="AboutButton_Click" Style="{StaticResource popButtonStyle}" Content="About"/>
+                </StackPanel>
+            </Border>
+        </Popup>
+        <!--显示信息popup-->
+        <Popup x:Name="popAbout" StaysOpen="False" PopupAnimation="Fade" Height="240" Width="180" PlacementTarget="{Binding ElementName=mainGrid}" Placement="Center"
+               AllowsTransparency="True">
+            <Grid Background="#FFDEDEDE">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Movie Manager@" Grid.Row="1" Style="{StaticResource logoTextStyle}"/>
+                <TextBlock Text="Version: alpha 0.0.1" Grid.Row="3" Style="{StaticResource commonTextStyle}"/>
+                <TextBlock Text="All right preserved." Grid.Row="5" Style="{StaticResource commonTextStyle}"/>
+            </Grid>
+        </Popup>
+        <Frame x:Name="mainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>
