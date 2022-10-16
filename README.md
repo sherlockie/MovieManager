@@ -1,3 +1,0 @@
-# MovieManager
-
-working in progress
