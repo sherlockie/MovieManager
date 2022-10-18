@@ -1,0 +1,17 @@
+QMenu
+{
+  background:#FF4A4B4B;
+  border:none;
+}
+QMenu::item
+{
+  padding:4px px;
+  color:white;6
+  font-size:24px;
+}
+QMenu::item:hover{
+  background-color:#FF484848;
+}
+QMenu::item:selected{
+  background-color:#FF686868;
+}

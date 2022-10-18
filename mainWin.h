@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QMouseEvent>
+#include <QStackedWidget>
+#include <QMenu>
 
 class MainWin : public QWidget
 {
@@ -11,14 +13,20 @@ class MainWin : public QWidget
 public:
     MainWin(QWidget *parent = nullptr);
     ~MainWin();
+    void initMenu();
 
 public slots:
     void closeButtonClicked();
+    void homeButtonClicked();
+    void searchButtonClicked();
+    void aboutActionTriggered();
 
 private:
     QRect m_areaMoveable;
     bool m_mousePressed;
     QPoint m_pressedMousePos;
+    QStackedWidget *pageStack;
+    QMenu *menu;
 
 protected:
     void mousePressEvent(QMouseEvent *);

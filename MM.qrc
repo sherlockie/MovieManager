@@ -16,4 +16,7 @@
         <file>Resources/6.jpg</file>
         <file>Resources/7.jpg</file>
     </qresource>
+    <qresource prefix="/qss">
+        <file>menu.qss</file>
+    </qresource>
 </RCC>

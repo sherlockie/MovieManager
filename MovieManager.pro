@@ -14,13 +14,15 @@ SOURCES += \
     graphicsview.cpp \
     homepage.cpp \
     main.cpp \
-    mainWin.cpp
+    mainWin.cpp \
+    searchpage.cpp
 
 HEADERS += \
     graphicspixmap.h \
     graphicsview.h \
     homepage.h \
-    mainWin.h
+    mainWin.h \
+    searchpage.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
