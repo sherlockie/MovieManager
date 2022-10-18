@@ -2,73 +2,25 @@
 #include "graphicspixmap.h"
 #include "graphicsview.h"
 #include <QDebug>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QFont>
+
+const int xRes = 1600;  // x resolution
+const int yRes = 640;  // y resolution
+const float xRatio =  1.8; // xRes / 876;
+const float yRatio =  1.8; // yRes / 368;
+const int image_yoffset = 80;
+const int image_xoffset = 110;
 
 HomePage::HomePage(QWidget *parent)
     : QWidget(parent)
 {
-//    this->setWindowTitle("Local Test Sample");
     this->setStyleSheet("background-color:black;");
-    this->resize(1600, 860);
     // scene
-    m_scene = new QGraphicsScene(QRect(0, 0, 1600, 860), this);  // 876, 368; 1.83, 2.34
-    // images infos
-    m_imgInfoMapList << QMap<QString, float> {
-        { "zIndex", 1},
-        { "width", 120},
-        { "height", 150},
-        { "top", 71},
-        { "left", 134},
-        { "opacity" , 0.6}
-    };
-    m_imgInfoMapList << QMap<QString, float>{
-        { "zIndex", 2},
-        { "width", 130},
-        { "height", 170},
-        { "top", 61},
-        { "left", 0},
-        { "opacity", 0.7}
-    };
-    m_imgInfoMapList << QMap<QString, float>{
-        { "zIndex", 3},
-        { "width", 170},
-        { "height", 218},
-        { "top", 37},
-        { "left", 110},
-        { "opacity", 0.8}
-    };
-    m_imgInfoMapList << QMap<QString, float>{
-        { "zIndex", 4},
-        { "width", 224},
-        { "height", 288},
-        { "top", 0},
-        { "left", 262},
-        { "opacity", 1}
-    };
-    m_imgInfoMapList << QMap<QString, float>{
-        { "zIndex", 3},
-        { "width", 170},
-        { "height", 218},
-        { "top", 37},
-        { "left", 468},
-        { "opacity", 0.8}
-    };
-    m_imgInfoMapList << QMap<QString, float>{
-        { "zIndex", 2},
-        { "width", 130},
-        { "height", 170},
-        { "top", 61},
-        { "left", 620},
-        { "opacity", 0.7}
-    };
-    m_imgInfoMapList << QMap<QString, float>{
-        { "zIndex", 1},
-        { "width", 220},
-        { "height", 150},
-        { "top", 71},
-        { "left", 496},
-        { "opacity", 0.6}
-    };
-
+    m_scene = new QGraphicsScene(QRect(0, 0, xRes, yRes), this);  // 876, 368; 1.83, 2.34
+    // images infos, caution: top=y; left=x
+    initImgPlaceholder();
     // add images to scene
     for (int i = 0; i < m_imgInfoMapList.size(); ++i)
     {
@@ -77,28 +29,33 @@ HomePage::HomePage(QWidget *parent)
         const QPixmap&& pixmap = QPixmap(centerImg);
         GraphicsPixmap *item = new GraphicsPixmap();
         item->setPixmap(pixmap);
-        item->setPixmapSize(QSize(imgInfoMap["width"], imgInfoMap["height"]));
-        item->setItemOffset(QPointF(imgInfoMap["left"] + 60, imgInfoMap["top"] + 40));
+        item->setPixmapSize(QSize(imgInfoMap["width"] * xRatio, imgInfoMap["height"] * yRatio));
+        item->setItemOffset(QPointF(imgInfoMap["left"] * xRatio + image_xoffset, imgInfoMap["top"] * yRatio + image_yoffset));
         item->setZValue(imgInfoMap["zIndex"]);
         item->setOpacity(imgInfoMap["opacity"]);
+        item->setToolTip(centerImg);
+        item->setAcceptHoverEvents(true);
+        connect(item, SIGNAL(hoverMove()), this, SLOT(imgHoverMove()));
+        connect(item, SIGNAL(hoverLeave()), this, SLOT(imgHoverLeave()));
         m_imgs << item;
         m_scene->addItem(item);
     }
+
     // left button
     GraphicsPixmap *leftButton = new GraphicsPixmap();
     leftButton->setCursor(QCursor(Qt::PointingHandCursor));
-    leftButton->setItemOffset(QPointF(12, 430));
+    leftButton->setItemOffset(QPointF(10, image_yoffset + 180));
     leftButton->setPixmap(QPixmap(":/icons/Resources/Wblog_left.png"));
-//    leftButton->setZValue(5);
+    leftButton->setZValue(5);
     m_scene->addItem(leftButton);
     connect(leftButton, SIGNAL(clicked()), this, SLOT(leftButtonClicked()));
 
     // right button
     GraphicsPixmap *rightButton = new GraphicsPixmap();
     rightButton->setCursor(QCursor(Qt::PointingHandCursor));
-    rightButton->setItemOffset(QPointF(1530, 430));
+    rightButton->setItemOffset(QPointF(xRes - 40, image_yoffset + 180));
     rightButton->setPixmap(QPixmap(":/icons/Resources/Wblog_right.png"));
-//    rightButton->setZValue(5);
+    rightButton->setZValue(5);
     m_scene->addItem(rightButton);
     connect(rightButton, SIGNAL(clicked()), this, SLOT(rightButtonClicked()));
 
@@ -106,9 +63,19 @@ HomePage::HomePage(QWidget *parent)
     QGraphicsView *view = new GraphicsView(m_scene);
     view->setParent(this);
     view->setFrameShape(QFrame::NoFrame);
-//    view->setBackgroundBrush(QColor(46, 46, 46));
-//    view->show();
-    // animations
+//    view->setContentsMargins(10, 10, 10, 10);
+    view->setCacheMode(QGraphicsView::CacheBackground);
+    view->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    // set layout
+    QVBoxLayout *mainLayout = new QVBoxLayout();
+    QLabel *welcomeSlogan = new QLabel("Over 1000+ movies\nAll in one");
+    welcomeSlogan->setStyleSheet("color:white;");
+    welcomeSlogan->setAlignment(Qt::AlignCenter);
+    welcomeSlogan->setFont(QFont("Microsoft Yahei", 24, QFont::Bold, false));
+    mainLayout->addWidget(welcomeSlogan);
+    mainLayout->addWidget(view);
+    this->setLayout(mainLayout);
+
     qDebug() << "Init animations";
     m_imgsAnimGroup = new QParallelAnimationGroup();
     for (int i = 0; i < m_imgs.count(); ++i)
@@ -157,6 +124,76 @@ void HomePage::rightButtonClicked()
     nextPlay();
 }
 
+void HomePage::imgHoverMove()
+{
+    m_timer->stop();
+}
+
+void HomePage::imgHoverLeave()
+{
+    m_timer->start();
+}
+
+void HomePage::initImgPlaceholder()
+{
+    m_imgInfoMapList << QMap<QString, float> {
+        { "zIndex", 1},
+        { "width", 120},
+        { "height", 150},
+        { "top", 71},
+        { "left", 134},
+        { "opacity" , 0.6}
+    };
+    m_imgInfoMapList << QMap<QString, float>{
+        { "zIndex", 2},
+        { "width", 130},
+        { "height", 170},
+        { "top", 61},
+        { "left", 0},
+        { "opacity", 0.7}
+    };
+    m_imgInfoMapList << QMap<QString, float>{
+        { "zIndex", 3},
+        { "width", 170},
+        { "height", 218},
+        { "top", 37 },
+        { "left", 110},
+        { "opacity", 0.8}
+    };
+    m_imgInfoMapList << QMap<QString, float>{
+        { "zIndex", 4},
+        { "width", 224},
+        { "height", 288},
+        { "top", 0},
+        { "left", 262},
+        { "opacity", 1}
+    };
+    m_imgInfoMapList << QMap<QString, float>{
+        { "zIndex", 3},
+        { "width", 170},
+        { "height", 218},
+        { "top", 37},
+        { "left", 468},
+        { "opacity", 0.8}
+    };
+    m_imgInfoMapList << QMap<QString, float>{
+        { "zIndex", 2},
+        { "width", 130},
+        { "height", 170},
+        { "top", 61},
+        { "left", 620},
+        { "opacity", 0.7}
+    };
+    m_imgInfoMapList << QMap<QString, float>{
+        { "zIndex", 1},
+        { "width", 120},
+        { "height", 150},
+        { "top", 71},
+        { "left", 496},
+        { "opacity", 0.6}
+    };
+}
+
 void HomePage::play()
 {
     for (int i = 0; i < m_imgInfoMapList.size(); ++i)
@@ -167,12 +204,11 @@ void HomePage::play()
         const auto imgInfoMap = m_imgInfoMapList[i];
         item->setZValue(imgInfoMap["zIndex"]);
         item->setOpacity(imgInfoMap["opacity"]);
-        QPointF pointf(imgInfoMap["left"] + 60, imgInfoMap["top"] + 40);
-//        const QString&& centerImg = QString(":/ImageViewWindow/Resources/%1.jpg").arg(i + 1);
+        QPointF pointf(imgInfoMap["left"] * xRatio + image_xoffset, imgInfoMap["top"] * yRatio + image_yoffset);
         offsetAnim->setStartValue(item->getItemOffset());
         sizeAnim->setStartValue(item->getPixmapSize());
         offsetAnim->setEndValue(pointf);
-        sizeAnim->setEndValue(QSize(imgInfoMap["width"], imgInfoMap["height"]));
+        sizeAnim->setEndValue(QSize(imgInfoMap["width"] * xRatio, imgInfoMap["height"] * yRatio));
     }
     m_isStart = true;
 }

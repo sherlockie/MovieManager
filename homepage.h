@@ -18,6 +18,7 @@ public:
     ~HomePage();
 
 private:
+    void initImgPlaceholder();
     void nextPlay();
     void lastPlay();
     void play();
@@ -25,6 +26,8 @@ private:
 private slots:
     void leftButtonClicked();
     void rightButtonClicked();
+    void imgHoverMove();
+    void imgHoverLeave();
 
 private:
     QGraphicsScene* m_scene;

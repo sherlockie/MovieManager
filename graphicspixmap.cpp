@@ -2,6 +2,7 @@
 
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
+#include <QDebug>
 
 GraphicsPixmap::GraphicsPixmap()  // : QGraphicsObject()
 {
@@ -15,6 +16,16 @@ void GraphicsPixmap::mousePressEvent(QGraphicsSceneMouseEvent *event)
     {
         emit clicked();
     }
+}
+
+void GraphicsPixmap::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
+{
+    emit hoverMove();
+}
+
+void GraphicsPixmap::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+{
+    emit hoverLeave();
 }
 
 QPointF GraphicsPixmap::getItemOffset()
@@ -47,11 +58,14 @@ void GraphicsPixmap::setPixmapSize(QSize size)
 
 QRectF GraphicsPixmap::boundingRect() const
 {
-    return QRectF(offset, pix.size() / pix.devicePixelRatio());
+//    qDebug() << pix.size() << pixSize << offset;
+//    return QRectF(offset, pix.size() / pix.devicePixelRatio());
+    return QRectF(offset, pixSize / pix.devicePixelRatio());
 }
 
 void GraphicsPixmap::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
+//    qDebug() << "call paint" << pixSize;
     painter->setRenderHint(QPainter::SmoothPixmapTransform, true);
     painter->drawPixmap(offset, pix.scaled(pixSize, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
