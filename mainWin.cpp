@@ -1,6 +1,7 @@
 #include "mainWin.h"
 #include "homepage.h"
 #include "searchpage.h"
+#include "infowin.h"
 
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -93,7 +94,9 @@ void MainWin::searchButtonClicked()
 
 void MainWin::aboutActionTriggered()
 {
-    qDebug() << "info";
+//    qDebug() << "info";
+    infoWin *info = new infoWin();
+    info->show();
 }
 
 MainWin::~MainWin()

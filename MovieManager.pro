@@ -13,6 +13,7 @@ SOURCES += \
     graphicspixmap.cpp \
     graphicsview.cpp \
     homepage.cpp \
+    infowin.cpp \
     main.cpp \
     mainWin.cpp \
     searchpage.cpp
@@ -21,6 +22,7 @@ HEADERS += \
     graphicspixmap.h \
     graphicsview.h \
     homepage.h \
+    infowin.h \
     mainWin.h \
     searchpage.h
 
