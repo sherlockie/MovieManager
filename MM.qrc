@@ -6,6 +6,7 @@
         <file>Resources/menu.png</file>
         <file>Resources/Wblog_left.png</file>
         <file>Resources/Wblog_right.png</file>
+        <file>Resources/confirm.png</file>
     </qresource>
     <qresource prefix="/default">
         <file>Resources/1.jpg</file>

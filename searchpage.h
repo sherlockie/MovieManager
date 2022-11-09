@@ -5,15 +5,17 @@
 #include <QList>
 #include <QGroupBox>
 #include <QRadioButton>
+#include <QScrollArea>
 
 class SearchPage : public QWidget
 {
     Q_OBJECT
 public:
     explicit SearchPage(QWidget *parent = nullptr);
+    // init buttons for search conditions
     void initButtons(QList<QString> typeLNameist, QString category);
-    // void initAgeButtons(QList<QString> ageLNameist);
-    // void initRegionButtons(QList<QString> regionLNameist);
+    // init search result eara
+    void initSearchResult();
 
 signals:
 public slots:
@@ -23,6 +25,7 @@ public slots:
     void commonTypeClicked();
     void commonAgeClicked();
     void commonRegionClicked();
+    void confirmButtonClicked();
 
 private:
     QList<QRadioButton *> typeButtonList;
@@ -31,6 +34,7 @@ private:
     QGroupBox *typeBox;
     QGroupBox *ageBox;
     QGroupBox *regionBox;
+    QScrollArea *resultEara;
 
 };
 

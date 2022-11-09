@@ -9,22 +9,26 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 RC_ICONS = favicon.ico
 
-SOURCES += \
-    graphicspixmap.cpp \
-    graphicsview.cpp \
-    homepage.cpp \
-    infowin.cpp \
-    main.cpp \
-    mainWin.cpp \
-    searchpage.cpp
+include(homepage.pri)
+include(searchpage.pri)
+include(main.pri)
 
-HEADERS += \
-    graphicspixmap.h \
-    graphicsview.h \
-    homepage.h \
-    infowin.h \
-    mainWin.h \
-    searchpage.h
+#SOURCES += \
+#    graphicspixmap.cpp \
+#    graphicsview.cpp \
+#    homepage.cpp \
+#    infowin.cpp \
+#    main.cpp \
+#    mainWin.cpp \
+#    searchpage.cpp
+
+#HEADERS += \
+#    graphicspixmap.h \
+#    graphicsview.h \
+#    homepage.h \
+#    infowin.h \
+#    mainWin.h \
+#    searchpage.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -33,3 +37,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     MM.qrc
+
+DISTFILES += \
+    homepage.pri \
+    main.pri \
+    searchpage.pri
