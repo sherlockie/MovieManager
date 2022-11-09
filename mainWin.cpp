@@ -2,6 +2,7 @@
 #include "homepage.h"
 #include "searchpage.h"
 #include "infowin.h"
+#include "addnew.h"
 
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -99,6 +100,12 @@ void MainWin::aboutActionTriggered()
     info->show();
 }
 
+void MainWin::addNewActionTriggered()
+{
+    AddNewDialog *addNew = new AddNewDialog();
+    addNew->exec();
+}
+
 MainWin::~MainWin()
 {
 }
@@ -115,6 +122,7 @@ void MainWin::initMenu()
 
     QAction *addNewAction = new QAction(menu);
     addNewAction->setText("Add new film");
+    connect(addNewAction, SIGNAL(triggered(bool)), this, SLOT(addNewActionTriggered()));
     QAction *aboutAction = new QAction(menu);
     aboutAction->setText("About");
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutActionTriggered()));

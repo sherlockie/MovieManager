@@ -20,6 +20,7 @@ public slots:
     void homeButtonClicked();
     void searchButtonClicked();
     void aboutActionTriggered();
+    void addNewActionTriggered();
 
 private:
     QRect m_areaMoveable;

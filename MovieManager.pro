@@ -42,3 +42,7 @@ DISTFILES += \
     homepage.pri \
     main.pri \
     searchpage.pri
+
+HEADERS +=
+
+SOURCES +=
