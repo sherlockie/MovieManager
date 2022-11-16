@@ -18,18 +18,18 @@ SearchPage::SearchPage(QWidget *parent)
     searchFrame->setMaximumWidth(450);
     typeBox = new QGroupBox(tr("类型"));
     typeBox->setStyleSheet("color:white;");
-    QList<QString> typeLNameist = {"所有类型", "动作", "爱情", "科幻", "剧情", "记录", "惊悚", "艺术", "搞笑", "音乐"};
-    initButtons(typeLNameist, "type");
+    QList<QString> typeLNameList = {"所有类型", "动作", "爱情", "科幻", "剧情", "记录", "惊悚", "艺术", "搞笑", "音乐"};
+    initButtons(typeLNameList, "type");
 
     ageBox = new QGroupBox(tr("年代"));
     ageBox->setStyleSheet("color:white;");
-    QList<QString> ageLNameist = {"所有年代", "2022", "2021", "2020", "2019", "2010年代", "2000年代", "90年代", "80年代", "70年代", "60年代", "更早"};
-    initButtons(ageLNameist, "age");
+    QList<QString> ageLNameList = {"所有年代", "2022", "2021", "2020", "2019", "2010年代", "2000年代", "90年代", "80年代", "70年代", "60年代", "更早"};
+    initButtons(ageLNameList, "age");
 
     regionBox = new QGroupBox(tr("地区"));
     regionBox->setStyleSheet("color:white;");
-    QList<QString> regionLNameist = {"所有地区", "华语", "欧美", "韩国", "中国大陆", "中国台湾", "中国台湾", "日本", "美国", "意大利"};
-    initButtons(regionLNameist, "region");
+    QList<QString> regionLNameList = {"所有地区", "华语", "欧美", "韩国", "中国大陆", "中国台湾", "中国台湾", "日本", "美国", "意大利"};
+    initButtons(regionLNameList, "region");
 
     // confirm button
     QPushButton *confirmButton = new QPushButton();
@@ -123,33 +123,38 @@ void SearchPage::initSearchResult()
     searchSummary->setText("Found 4396 results shown below:");
     searchSummary->setStyleSheet("color:white;");
     QFrame *allResultCard = new QFrame();
+    allResultCard->setMinimumWidth(1080);
     QVBoxLayout *allResultCardyout = new QVBoxLayout();
     allResultCardyout->addWidget(searchSummary);
     // results blocks/cards
     for (int i=0; i < 10; ++i)
     {
-        QFrame *resultCard = new QFrame();
+        QFrame *resultCard = new QFrame(resultEara);
+        resultCard->setStyleSheet(
+                    "background-color:#FF484848;"
+                    );
         // poster & details layout
         QHBoxLayout *cardLayout = new QHBoxLayout();
         // details: name/actors/main plots layout
         QVBoxLayout *detailsLayout = new QVBoxLayout();
         // components
-        QLabel *poster = new QLabel("海报");
+        QLabel *poster = new QLabel("海报", resultCard);
         const QPixmap &&posterimg = QPixmap(":/default/Resources/1.jpg");
         poster->setPixmap(posterimg);
-        QLabel *name = new QLabel("海边的曼彻斯特(2016)");
+        QLabel *name = new QLabel("海边的曼彻斯特(2016)", resultCard);
         name->setStyleSheet("color:white;");
-        QLabel *actors = new QLabel("主演：肯尼斯·罗纳根/卡西·阿弗莱克");
+        QLabel *actors = new QLabel("主演：肯尼斯·罗纳根/卡西·阿弗莱克", resultCard);
         actors->setStyleSheet("color:white;");
         QLabel *outline = new QLabel("李（卡西·阿弗莱克饰）是一名颓废压抑的修理工，在得知哥哥乔伊（凯尔·钱德勒饰）"
-                                     "去世的消息后，李回到了故乡-海边的曼彻斯特处理乔伊的后事。");
+                                     "去世的消息后，李回到了故乡-海边的曼彻斯特处理乔伊的后事。", resultCard);
+        // outline->adjustSize();
         outline->setWordWrap(true);
         outline->setStyleSheet("color:white;");
         detailsLayout->addWidget(name);
         detailsLayout->addWidget(actors);
         detailsLayout->addWidget(outline);
         cardLayout->addWidget(poster);
-        cardLayout->addLayout(detailsLayout);
+        cardLayout->addLayout(detailsLayout, 1);
 
         resultCard->setLayout(cardLayout);
         allResultCardyout->addWidget(resultCard);

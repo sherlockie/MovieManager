@@ -16,7 +16,9 @@ const int image_xoffset = 110;
 HomePage::HomePage(QWidget *parent)
     : QWidget(parent)
 {
-    this->setStyleSheet("background-color:black;");
+    //this->setWindowFlags(Qt::FramelessWindowHint);
+    //this->setStyleSheet("background-color:white;");
+    //this->setStyleSheet("background-image:url(:/images/Resources/background-m.jpg);");
     // scene
     m_scene = new QGraphicsScene(QRect(0, 0, xRes, yRes), this);  // 876, 368; 1.83, 2.34
     // images infos, caution: top=y; left=x
@@ -63,7 +65,9 @@ HomePage::HomePage(QWidget *parent)
     QGraphicsView *view = new GraphicsView(m_scene);
     view->setParent(this);
     view->setFrameShape(QFrame::NoFrame);
-//    view->setContentsMargins(10, 10, 10, 10);
+    //view->setWindowFlag(Qt::FramelessWindowHint);
+    view->setStyleSheet("background:transparent;border:0px;");
+    //view->setContentsMargins(10, 10, 10, 10);
     view->setCacheMode(QGraphicsView::CacheBackground);
     view->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     // set layout
@@ -72,6 +76,7 @@ HomePage::HomePage(QWidget *parent)
     welcomeSlogan->setStyleSheet("color:white;");
     welcomeSlogan->setAlignment(Qt::AlignCenter);
     welcomeSlogan->setFont(QFont("Microsoft Yahei", 24, QFont::Bold, false));
+
     mainLayout->addWidget(welcomeSlogan);
     mainLayout->addWidget(view);
     this->setLayout(mainLayout);

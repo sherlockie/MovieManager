@@ -16,8 +16,14 @@
         <file>Resources/5.jpg</file>
         <file>Resources/6.jpg</file>
         <file>Resources/7.jpg</file>
+        <file>Resources/confirm-w.png</file>
     </qresource>
     <qresource prefix="/qss">
         <file>menu.qss</file>
+        <file>topButton.qss</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>Resources/background.jpg</file>
+        <file>Resources/background-m.jpg</file>
     </qresource>
 </RCC>

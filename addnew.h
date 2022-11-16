@@ -2,7 +2,11 @@
 #define ADDNEW_H
 
 #include <QDialog>
-
+#include <QComboBox>
+#include <QLineEdit>
+#include <QList>
+#include <QPushButton>
+#include <QButtonGroup>
 
 class AddNewDialog : public QDialog
 {
@@ -14,6 +18,15 @@ public:
 
 public slots:
     void chooseFile(int i);
+    void confirmButtonClicked();
+    void commonButtonTagClicked();
+
+private:
+    QComboBox *chooseFileBox;
+    QLineEdit *inputNameLine;
+    QButtonGroup * allTypeList;
+    QButtonGroup * allAgeList;
+    QButtonGroup * allRegionList;
 };
 
 #endif // ADDNEW_H
