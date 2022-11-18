@@ -34,7 +34,7 @@ private:
     QGroupBox *typeBox;
     QGroupBox *ageBox;
     QGroupBox *regionBox;
-    QScrollArea *resultEara;
+    QScrollArea *resultArea;
 
 };
 

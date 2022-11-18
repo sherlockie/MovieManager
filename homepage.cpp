@@ -66,16 +66,15 @@ HomePage::HomePage(QWidget *parent)
     view->setParent(this);
     view->setFrameShape(QFrame::NoFrame);
     //view->setWindowFlag(Qt::FramelessWindowHint);
-    view->setStyleSheet("background:transparent;border:0px;");
+    //view->setStyleSheet("background:transparent;border:0px;");
     //view->setContentsMargins(10, 10, 10, 10);
     view->setCacheMode(QGraphicsView::CacheBackground);
     view->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     // set layout
     QVBoxLayout *mainLayout = new QVBoxLayout();
     QLabel *welcomeSlogan = new QLabel("Over 1000+ movies\nAll in one");
-    welcomeSlogan->setStyleSheet("color:white;");
+    welcomeSlogan->setObjectName("welcomeSlogan");
     welcomeSlogan->setAlignment(Qt::AlignCenter);
-    welcomeSlogan->setFont(QFont("Microsoft Yahei", 24, QFont::Bold, false));
 
     mainLayout->addWidget(welcomeSlogan);
     mainLayout->addWidget(view);

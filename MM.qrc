@@ -7,6 +7,7 @@
         <file>Resources/Wblog_left.png</file>
         <file>Resources/Wblog_right.png</file>
         <file>Resources/confirm.png</file>
+        <file>Resources/details.png</file>
     </qresource>
     <qresource prefix="/default">
         <file>Resources/1.jpg</file>
@@ -17,10 +18,10 @@
         <file>Resources/6.jpg</file>
         <file>Resources/7.jpg</file>
         <file>Resources/confirm-w.png</file>
+        <file>Resources/emptySearch.png</file>
     </qresource>
     <qresource prefix="/qss">
-        <file>menu.qss</file>
-        <file>topButton.qss</file>
+        <file>classicStyle.qss</file>
     </qresource>
     <qresource prefix="/images">
         <file>Resources/background.jpg</file>

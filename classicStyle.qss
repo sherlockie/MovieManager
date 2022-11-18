@@ -1,0 +1,211 @@
+/* 配色方案（由深至浅）
+1、#161b1f  #57233a  #ae4951  #b98d72
+*/
+QWidget{
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+/* 主窗口顶栏样式 */
+QFrame#topBarFrame{
+    background-color: #161b1f;
+}
+
+/* 主窗口顶栏中的按钮样式 */
+QFrame#topBarFrame QPushButton{
+    background-color:#161b1f;
+    border-style:none;
+    border-width:0px;
+}
+
+QFrame#topBarFrame QPushButton:hover{
+    background-color:#57233a;
+}
+
+QFrame#topBarFrame QPushButton:pressed{
+    background-color:#ae4951;
+}
+
+/* 主窗口顶栏中的菜单及下拉内容样式 */
+QMenu#topMenu{
+  background:#161b1f;
+  border:none;
+  margin:5px;
+}
+
+QMenu#topMenu::separator {
+    height: 5px;
+    background: #57233a;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+QMenu#topMenu::indicator {
+    width: 13px;
+    height: 13px;
+}
+
+QMenu#topMenu::item{
+  padding:4px px;
+  color:#b98d72;
+  font-size:24px;
+  border: 1px solid transparent;
+}
+
+QMenu#topMenu::item:hover{
+  background-color:#57233a;
+}
+
+QMenu#topMenu::item:selected{
+  background-color:#ae4951;
+}
+
+/* 主窗口slogan样式 */
+QLabel#welcomeSlogan{
+    color:#b98d72;
+    font-size:120px;
+    font-weight:bold;
+}
+
+/* QGraphicsView样式 */
+QGraphicsView{
+    background:transparent;
+    border:none;
+}
+
+/* 搜索条件区域样式 */
+QWidget#searchPage QGroupBox{
+    background-color:#161b1f;
+    color:#b98d72;
+    font-size:24px;
+    font-weight:bold;
+    border:2px solid #57233a;
+    border-radius: 10px;
+}
+
+QWidget#searchPage QGroupBox QRadioButton{
+    color:#b98d72;
+}
+
+QWidget#searchPage QGroupBox QRadioButton::indicator{
+    width:15px;
+    height:15px;
+    border-radius:8px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #b98d72;
+}
+
+QWidget#searchPage QGroupBox QRadioButton::indicator:unchecked:hover {
+    background-color:#57233a;
+}
+
+QWidget#searchPage QGroupBox QRadioButton::indicator:unchecked:pressed {
+    background-color:#ae4951;
+}
+
+QWidget#searchPage QGroupBox QRadioButton::indicator::checked {
+    background-color:#ae4951;
+}
+
+/* 默认搜索结果区域样式 */
+QWidget#searchPage QScrollArea#resultArea{
+     background-color:#161b1f;
+     border:2px solid #57233a;
+     border-radius: 10px;
+}
+
+/* 搜索结果区域滚动条样式 */
+QWidget#searchPage QScrollArea#resultArea QScrollBar:vertical{
+    border:2px solid #57233a;
+    border-radius: 8px;
+    background:#161b1f;
+    width:20px;
+    margin:10px 0px 10px 0px;
+}
+
+QWidget#searchPage QScrollArea#resultArea QScrollBar:vertical:hover,
+QWidget#searchPage QScrollArea#resultArea QScrollBar:vertical:pressed{
+    border:2px solid #ae4951;
+}
+
+QWidget#searchPage QScrollArea#resultArea QScrollBar::handle:vertical{
+    border:none;
+    background:#ae4951;
+    min-height:30px;
+    border-radius:4px;
+    margin:0px 2px 0px 2px;
+}
+
+QWidget#searchPage QScrollArea#resultArea QScrollBar::add-line:vertical,
+QWidget#searchPage QScrollArea#resultArea QScrollBar::sub-line:vertical{
+    height:0px;
+    border:none;
+    background:#161b1f;
+    border-radius: 3px;
+}
+
+QWidget#searchPage QScrollArea#resultArea QScrollBar::add-page:vertical,
+QWidget#searchPage QScrollArea#resultArea QScrollBar::sub-page:vertical{
+    border:none;
+    background:#161b1f;
+    border-radius: 3px;
+}
+
+/* 搜索结果卡片样式 */
+QWidget#searchPage QFrame#allResultCard{
+    background:transparent;
+    border:none;
+}
+
+QWidget#searchPage QFrame#allResultCard QLabel#searchSummary{
+    background:transparent;
+    color:#b98d72;
+    font-size:40px;
+}
+
+QWidget#searchPage QFrame#allResultCard QFrame{
+    background-color:#57233a;
+    border:none;
+    border-radius:10px;
+}
+
+QWidget#searchPage QFrame#allResultCard QFrame QLabel[isTitle="false"]{
+    color:#b98d72;
+    border:none;
+}
+
+QWidget#searchPage QFrame#allResultCard QFrame QLabel[isTitle="true"]{
+    color:#b98d72;
+    font-size:30px;
+    font-weight:bold;
+}
+
+/* 详情页面样式 */
+QWidget#detailPage QScrollArea{
+    background-color:#161b1f;
+    border:none;
+}
+
+QWidget#detailPage QFrame{
+    background-color:#161b1f;
+    border:none;
+}
+
+QWidget#detailPage QLabel#name{
+    border:none;
+    color:#b98d72;
+    font-size:40px;
+    font-weight:bold;
+}
+
+QWidget#detailPage QLabel{
+    border:none;
+    color:#b98d72;
+    font-size:20px;
+}
+
+QWidget#detailPage QLabel#outlineTitle{
+    border:none;
+    color:#ae4951;
+    font-size:20px;
+}

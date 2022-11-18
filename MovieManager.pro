@@ -12,23 +12,7 @@ RC_ICONS = favicon.ico
 include(homepage.pri)
 include(searchpage.pri)
 include(main.pri)
-
-#SOURCES += \
-#    graphicspixmap.cpp \
-#    graphicsview.cpp \
-#    homepage.cpp \
-#    infowin.cpp \
-#    main.cpp \
-#    mainWin.cpp \
-#    searchpage.cpp
-
-#HEADERS += \
-#    graphicspixmap.h \
-#    graphicsview.h \
-#    homepage.h \
-#    infowin.h \
-#    mainWin.h \
-#    searchpage.h
+include(detailpage.pri)
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -39,10 +23,7 @@ RESOURCES += \
     MM.qrc
 
 DISTFILES += \
+    detailpage.pri \
     homepage.pri \
     main.pri \
     searchpage.pri
-
-HEADERS +=
-
-SOURCES +=

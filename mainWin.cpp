@@ -3,6 +3,7 @@
 #include "searchpage.h"
 #include "infowin.h"
 #include "addnew.h"
+#include "detailpage.h"
 
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -22,7 +23,7 @@ MainWin::MainWin(QWidget *parent)
     this->resize(1600, 900);
     this->setWindowFlag(Qt::FramelessWindowHint); // frameless window
     this->setObjectName("mainWin");
-//    this->setStyleSheet("QWidget#mainWin{background-color:black;}");
+    //this->setStyleSheet("QWidget#mainWin{background-color:black;}");
 
     QPalette pal =this->palette();
     pal.setBrush(QPalette::Window,QBrush(QPixmap(":/images/Resources/background-m.jpg")));
@@ -35,10 +36,7 @@ MainWin::MainWin(QWidget *parent)
     mainLayout->setMargin(1);
 
     QFrame *topBarFrame = new QFrame();
-    topBarFrame->setStyleSheet(
-                "background-color:#FF282828;"
-                "border:0px none #FF282828;"
-                );
+    topBarFrame->setObjectName("topBarFrame");
     topBarFrame->setMaximumHeight(42);
     //topBarFrame->setContentsMargins(0, 0, 0, 0);
     QHBoxLayout *topBarLayout = new QHBoxLayout();
@@ -60,34 +58,29 @@ MainWin::MainWin(QWidget *parent)
     searchButton->setFixedSize(40, 40);
     connect(searchButton, SIGNAL(clicked()), this, SLOT(searchButtonClicked()));
 
+    QPushButton *detailButton = new QPushButton(topBarFrame);
+    detailButton->setIcon(QIcon(":/icons/Resources/details.png"));
+    detailButton->setFixedSize(40, 40);
+    connect(detailButton, SIGNAL(clicked()), this, SLOT(detailButtonClicked()));
+
     QPushButton *closeButton = new QPushButton(topBarFrame);
     closeButton->setIcon(QIcon(":/icons/Resources/close.png"));
     closeButton->setFixedSize(40, 40);
     connect(closeButton, SIGNAL(clicked()), this, SLOT(closeButtonClicked()));
     topBarFrame->setLayout(topBarLayout);
 
-    QFile topButtonQssFile(":/qss/topButton.qss");
-    if (topButtonQssFile.open(QFile::ReadOnly))
-    {
-        auto qssStyle = topButtonQssFile.readAll();
-        menuButton->setStyleSheet(qssStyle);
-        homeButton->setStyleSheet(qssStyle);
-        searchButton->setStyleSheet(qssStyle);
-        closeButton->setStyleSheet(qssStyle);
-    }
-
-    topButtonQssFile.close();
-
     topBarLayout->addWidget(menuButton);
     topBarLayout->addStretch();
     topBarLayout->addWidget(homeButton);
     topBarLayout->addWidget(searchButton);
+    topBarLayout->addWidget(detailButton);
     topBarLayout->addStretch();
     topBarLayout->addWidget(closeButton);
 
     HomePage *homepage = new HomePage(this);
     //homepage->setAutoFillBackground(true);
     SearchPage *searchpage = new SearchPage(this);
+    detailPage *detailpage = new detailPage(this);
 
     // QListWidget *pageList = new QListWidget();
     // pageList->insertItem(0, "homepage");
@@ -96,6 +89,7 @@ MainWin::MainWin(QWidget *parent)
     pageStack = new QStackedWidget(this);
     pageStack->addWidget(homepage);
     pageStack->addWidget(searchpage);
+    pageStack->addWidget(detailpage);
 
 //    mainLayout->addWidget(pageList);
     mainLayout->addWidget(pageStack);
@@ -119,6 +113,11 @@ void MainWin::searchButtonClicked()
     pageStack->setCurrentIndex(1);
 }
 
+void MainWin::detailButtonClicked()
+{
+    pageStack->setCurrentIndex(2);
+}
+
 void MainWin::aboutActionTriggered()
 {
 //    qDebug() << "info";
@@ -139,12 +138,7 @@ MainWin::~MainWin()
 void MainWin::initMenu()
 {
     menu = new QMenu();
-    QFile menuQssFile(":/qss/menu.qss");
-    if (menuQssFile.open(QFile::ReadOnly))
-    {
-        menu->setStyleSheet(menuQssFile.readAll());
-    }
-    menuQssFile.close();
+    menu->setObjectName("topMenu");
 
     QAction *addNewAction = new QAction(menu);
     addNewAction->setText("Add new film");
