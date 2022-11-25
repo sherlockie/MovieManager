@@ -13,6 +13,7 @@ include(homepage.pri)
 include(searchpage.pri)
 include(main.pri)
 include(detailpage.pri)
+include(setting.pri)
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -26,4 +27,5 @@ DISTFILES += \
     detailpage.pri \
     homepage.pri \
     main.pri \
-    searchpage.pri
+    searchpage.pri \
+    setting.pri

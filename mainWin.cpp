@@ -4,6 +4,7 @@
 #include "infowin.h"
 #include "addnew.h"
 #include "detailpage.h"
+#include "mainsettingpage.h""
 
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -131,6 +132,12 @@ void MainWin::addNewActionTriggered()
     addNew->exec();
 }
 
+void MainWin::settingActionTriggered()
+{
+    mainSettingPage *settingPage = new mainSettingPage();
+    settingPage->exec();
+}
+
 MainWin::~MainWin()
 {
 }
@@ -141,13 +148,17 @@ void MainWin::initMenu()
     menu->setObjectName("topMenu");
 
     QAction *addNewAction = new QAction(menu);
-    addNewAction->setText("Add new film");
+    addNewAction->setText("添加新电影");
     connect(addNewAction, SIGNAL(triggered(bool)), this, SLOT(addNewActionTriggered()));
+    QAction *settingAction = new QAction(menu);
+    settingAction->setText("设置");
+    connect(settingAction, SIGNAL(triggered()), this, SLOT(settingActionTriggered()));
     QAction *aboutAction = new QAction(menu);
-    aboutAction->setText("About");
+    aboutAction->setText("关于");
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutActionTriggered()));
 
     menu->addAction(addNewAction);
+    menu->addAction(settingAction);
     menu->addAction(aboutAction);
 }
 
