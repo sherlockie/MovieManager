@@ -8,6 +8,12 @@
         <file>Resources/Wblog_right.png</file>
         <file>Resources/confirm.png</file>
         <file>Resources/details.png</file>
+        <file>Resources/refresh-dark.png</file>
+        <file>Resources/refresh-light.png</file>
+        <file>Resources/add-dark.png</file>
+        <file>Resources/add-light.png</file>
+        <file>Resources/dec-dark.png</file>
+        <file>Resources/dec-light.png</file>
     </qresource>
     <qresource prefix="/default">
         <file>Resources/1.jpg</file>

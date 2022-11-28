@@ -40,6 +40,7 @@ AddNewDialog::AddNewDialog()
      QList<QString> typeLNameList = {"未知", "动作", "爱情", "科幻", "剧情", "记录", "惊悚", "艺术", "搞笑", "音乐"};
      FlowLayout *typelayout = new FlowLayout();
      allTypeList = new QButtonGroup();
+     allTypeList->setExclusive(false);  // 类型可以多选
      foreach(QString typeName, typeLNameList)
      {
          QPushButton *typeButton = new QPushButton(typeName+"+");

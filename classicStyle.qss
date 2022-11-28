@@ -1,6 +1,9 @@
 /* 配色方案（由深至浅）
-1、#161b1f  #57233a  #ae4951  #b98d72
+@color1 2 3: 背景深色（黑灰）
+@color4 5 6: 主题彩色
+@color7 8: 字体浅色（灰白色）
 */
+
 QWidget{
     font-family:Arial,Helvetica,sans-serif;
 }
@@ -208,4 +211,75 @@ QWidget#detailPage QLabel#outlineTitle{
     border:none;
     color:#ae4951;
     font-size:20px;
+}
+
+/* 设置页面主要样式 */
+QWidget#mainSettingPage{
+    background-color:@color1;
+}
+
+QWidget#mainSettingPage QFrame{
+    border: none;
+    background-color:@color2;
+}
+
+QWidget#mainSettingPage QStackedWidget{
+    border: none;
+    background-color:@color1;
+}
+
+QWidget#mainSettingPage QToolButton{
+    border:none;
+    background-color:@color2;
+    color:@color7;
+}
+
+QWidget#mainSettingPage QToolButton:hover,
+QWidget#mainSettingPage QToolButton:pressed{
+    border:none;
+    background-color:@color3;
+    color:@color8;
+}
+
+QWidget#mainSettingPage QToolButton#syncButton{
+    icon:url(:/icons/Resources/refresh-dark.png);
+}
+
+QWidget#mainSettingPage QToolButton#syncButton:hover,
+QWidget#mainSettingPage QToolButton#syncButton:pressed{
+    icon:url(:/icons/Resources/refresh-light.png);
+}
+
+QWidget#mainSettingPage QToolButton#addButton{
+    image:url(:/icons/Resources/add-dark.png);
+}
+
+QWidget#mainSettingPage QToolButton#addButton:hover,
+QWidget#mainSettingPage QToolButton#addButton:pressed{
+    image:url(:/icons/Resources/add-light.png);
+}
+
+QWidget#mainSettingPage QToolButton#decButton{
+    image:url(:/icons/Resources/dec-dark.png);
+}
+
+QWidget#mainSettingPage QToolButton#decButton:hover,
+QWidget#mainSettingPage QToolButton#decButton:pressed{
+    image:url(:/icons/Resources/dec-light.png);
+}
+
+/* 路径表样式 */
+QTableView{
+    color:@color7;
+    border:@color4;
+    gridline-color:@color4;
+    background-color:@color2;
+    selection-background-color:@color6;
+}
+
+QHeaderView::section{
+    border:1px solid @color4;
+    background:@color3;
+    color: @color7;
+    padding-left: 4px;
 }

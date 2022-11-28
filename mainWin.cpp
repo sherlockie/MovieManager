@@ -4,7 +4,8 @@
 #include "infowin.h"
 #include "addnew.h"
 #include "detailpage.h"
-#include "mainsettingpage.h""
+#include "mainsettingpage.h"
+#include "library.h"
 
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -44,28 +45,33 @@ MainWin::MainWin(QWidget *parent)
     topBarLayout->setContentsMargins(1, 1, 1, 1);
 
     QPushButton *menuButton = new QPushButton(topBarFrame);
-    menuButton->setIcon(QIcon(":/icons/Resources/menu.png"));
+    //menuButton->setIcon(QIcon(":/icons/Resources/menu.png"));
     menuButton->setFixedSize(40, 40);
     initMenu();
     menuButton->setMenu(menu);
 
     QPushButton *homeButton = new QPushButton(topBarFrame);
-    homeButton->setIcon(QIcon(":/icons/Resources/home.png"));
+    //homeButton->setIcon(QIcon(":/icons/Resources/home.png"));
     homeButton->setFixedSize(40, 40);
     connect(homeButton, SIGNAL(clicked()), this, SLOT(homeButtonClicked()));
 
+    QPushButton *libraryButton = new QPushButton(topBarFrame);
+    //libraryButton->setIcon(QIcon(":/icons/Resources/home.png"));
+    libraryButton->setFixedSize(40, 40);
+    connect(libraryButton, SIGNAL(clicked()), this, SLOT(libraryButtonClicked()));
+
     QPushButton *searchButton = new QPushButton(topBarFrame);
-    searchButton->setIcon(QIcon(":/icons/Resources/search.png"));
+    //searchButton->setIcon(QIcon(":/icons/Resources/search.png"));
     searchButton->setFixedSize(40, 40);
     connect(searchButton, SIGNAL(clicked()), this, SLOT(searchButtonClicked()));
 
     QPushButton *detailButton = new QPushButton(topBarFrame);
-    detailButton->setIcon(QIcon(":/icons/Resources/details.png"));
+    //detailButton->setIcon(QIcon(":/icons/Resources/details.png"));
     detailButton->setFixedSize(40, 40);
     connect(detailButton, SIGNAL(clicked()), this, SLOT(detailButtonClicked()));
 
     QPushButton *closeButton = new QPushButton(topBarFrame);
-    closeButton->setIcon(QIcon(":/icons/Resources/close.png"));
+    //closeButton->setIcon(QIcon(":/icons/Resources/close.png"));
     closeButton->setFixedSize(40, 40);
     connect(closeButton, SIGNAL(clicked()), this, SLOT(closeButtonClicked()));
     topBarFrame->setLayout(topBarLayout);
@@ -73,12 +79,14 @@ MainWin::MainWin(QWidget *parent)
     topBarLayout->addWidget(menuButton);
     topBarLayout->addStretch();
     topBarLayout->addWidget(homeButton);
+    topBarLayout->addWidget(libraryButton);
     topBarLayout->addWidget(searchButton);
     topBarLayout->addWidget(detailButton);
     topBarLayout->addStretch();
     topBarLayout->addWidget(closeButton);
 
     HomePage *homepage = new HomePage(this);
+    library *libraryPage = new library();
     //homepage->setAutoFillBackground(true);
     SearchPage *searchpage = new SearchPage(this);
     detailPage *detailpage = new detailPage(this);
@@ -89,6 +97,7 @@ MainWin::MainWin(QWidget *parent)
     mainLayout->addWidget(topBarFrame);
     pageStack = new QStackedWidget(this);
     pageStack->addWidget(homepage);
+    pageStack->addWidget(libraryPage);
     pageStack->addWidget(searchpage);
     pageStack->addWidget(detailpage);
 
@@ -109,14 +118,19 @@ void MainWin::homeButtonClicked()
     pageStack->setCurrentIndex(0);
 }
 
-void MainWin::searchButtonClicked()
+void MainWin::libraryButtonClicked()
 {
     pageStack->setCurrentIndex(1);
 }
 
-void MainWin::detailButtonClicked()
+void MainWin::searchButtonClicked()
 {
     pageStack->setCurrentIndex(2);
+}
+
+void MainWin::detailButtonClicked()
+{
+    pageStack->setCurrentIndex(3);
 }
 
 void MainWin::aboutActionTriggered()

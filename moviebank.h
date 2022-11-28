@@ -5,6 +5,9 @@
 #include <QWidget>
 #include <QFrame>
 #include <QToolButton>
+#include <QTableView>
+#include <QStandardItemModel>
+#include <QHeaderView>
 
 class movieBank : public QWidget
 {
@@ -15,6 +18,12 @@ public:
 
 public slots:
     void syncButtonClicked();
+    void addButtonClicked();
+    void decButtonClicked();
+
+private:
+    QStandardItemModel *tableModel;
+    QTableView *tableView;
 
 signals:
 
