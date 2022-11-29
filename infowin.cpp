@@ -4,38 +4,43 @@
 #include <QFont>
 #include <QGuiApplication>
 #include <QScreen>
+#include <QFrame>
 
 infoWin::infoWin(QWidget *parent)
     : QWidget{parent}
 {
+    this->setObjectName("infoWin");
     this->setWindowFlags(Qt::Popup);
-    this->resize(180, 240);
-    this->setStyleSheet("background-color:#FFDEDEDE;");
+    this->resize(180, 340);
     QRect screenRect = QGuiApplication::primaryScreen()->availableGeometry();
     int w = screenRect.width();
     int h = screenRect.height();
     move(w / 2 - 90, h / 2 - 120);
     // init widgets
     QLabel *logoLabel = new QLabel(this);
-    logoLabel->setText("Movie Manager@");
-    logoLabel->setFont(QFont("Arial Black", 10, QFont::Bold));
+    logoLabel->setObjectName("logoLabel");
     logoLabel->setAlignment(Qt::AlignHCenter);
     QLabel *versionLabel = new QLabel(this);
     versionLabel->setText("Version: alpha 0.0.1");
-    versionLabel->setFont(QFont("Microsoft YaHei Light", 6, QFont::Light));
     versionLabel->setAlignment(Qt::AlignHCenter);
     QLabel *ttLabel = new QLabel(this);
     ttLabel->setText("All right preserved.");
-    ttLabel->setFont(QFont("Microsoft YaHei Light", 6, QFont::Light));
     ttLabel->setAlignment(Qt::AlignHCenter);
 
-    QVBoxLayout *layout = new QVBoxLayout();
-    layout->setAlignment(Qt::AlignHCenter);
-    layout->addWidget(logoLabel);
-    layout->addWidget(versionLabel);
-    layout->addWidget(ttLabel);
-    layout->addStretch();
-    this->setLayout(layout);
+    QVBoxLayout *mainlayout = new QVBoxLayout();
+    mainlayout->setMargin(5);
+    QFrame *mainFrame = new QFrame();
+    mainFrame->setObjectName("mainFrame");
+    QVBoxLayout *infolayout = new QVBoxLayout();
+    infolayout->setAlignment(Qt::AlignHCenter);
+    infolayout->addWidget(logoLabel, 3);
+    infolayout->addWidget(versionLabel, 1);
+    infolayout->addWidget(ttLabel, 1);
+    infolayout->addStretch(5);
+    mainFrame->setLayout(infolayout);
+
+    mainlayout->addWidget(mainFrame);
+    this->setLayout(mainlayout);
 
 //    setFocus();
 }

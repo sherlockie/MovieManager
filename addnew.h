@@ -19,7 +19,6 @@ public:
 public slots:
     void chooseFile(int i);
     void confirmButtonClicked();
-    void commonButtonTagClicked();
 
 private:
     QComboBox *chooseFileBox;

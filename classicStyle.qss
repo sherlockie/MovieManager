@@ -10,34 +10,86 @@ QWidget{
 
 /* 主窗口顶栏样式 */
 QFrame#topBarFrame{
-    background-color: #161b1f;
+    background-color: @color2;
 }
 
 /* 主窗口顶栏中的按钮样式 */
 QFrame#topBarFrame QPushButton{
-    background-color:#161b1f;
+    background-color: @color2;
     border-style:none;
     border-width:0px;
 }
-
-QFrame#topBarFrame QPushButton:hover{
-    background-color:#57233a;
+QFrame#topBarFrame QPushButton::menu-indicator{
+    background-color: @color3;
+    subcontrol-position: right center;
+    subcontrol-origin: padding;
+    left: 2px;
 }
 
-QFrame#topBarFrame QPushButton:pressed{
-    background-color:#ae4951;
+QFrame#topBarFrame QPushButton#homeButton{
+     image: url(":/icons/Resources/home-dark.png");
+}
+
+QFrame#topBarFrame QPushButton#homeButton:hover,
+QFrame#topBarFrame QPushButton#homeButton:pressed{
+    image: url(":/icons/Resources/home-light.png");
+}
+
+QFrame#topBarFrame QPushButton#libraryButton{
+     image: url(":/icons/Resources/library-dark.png");
+}
+
+QFrame#topBarFrame QPushButton#libraryButton:hover,
+QFrame#topBarFrame QPushButton#libraryButton:pressed{
+    image: url(":/icons/Resources/library-light.png");
+}
+
+QFrame#topBarFrame QPushButton#searchButton{
+     image: url(":/icons/Resources/search-dark.png");
+}
+
+QFrame#topBarFrame QPushButton#searchButton:hover,
+QFrame#topBarFrame QPushButton#searchButton:pressed{
+    image: url(":/icons/Resources/search-light.png");
+}
+
+QFrame#topBarFrame QPushButton#detailButton{
+     image: url(":/icons/Resources/details-dark.png");
+}
+
+QFrame#topBarFrame QPushButton#detailButton:hover,
+QFrame#topBarFrame QPushButton#detailButton:pressed{
+    image: url(":/icons/Resources/details-light.png");
+}
+
+QFrame#topBarFrame QPushButton#closeButton{
+     image: url(":/icons/Resources/close-dark.png");
+}
+
+QFrame#topBarFrame QPushButton#closeButton:hover,
+QFrame#topBarFrame QPushButton#closeButton:pressed{
+    image: url(":/icons/Resources/close-light.png");
+}
+
+QFrame#topBarFrame QPushButton#menuButton{
+     image: url(":/icons/Resources/menu-dark.png");
+}
+
+QFrame#topBarFrame QPushButton#menuButton:hover,
+QFrame#topBarFrame QPushButton#menuButton:pressed{
+    image: url(":/icons/Resources/menu-light.png");
 }
 
 /* 主窗口顶栏中的菜单及下拉内容样式 */
 QMenu#topMenu{
-  background:#161b1f;
+  background:@color2;
   border:none;
   margin:5px;
 }
 
 QMenu#topMenu::separator {
     height: 5px;
-    background: #57233a;
+    background: @color3;
     margin-left: 10px;
     margin-right: 5px;
 }
@@ -49,22 +101,37 @@ QMenu#topMenu::indicator {
 
 QMenu#topMenu::item{
   padding:4px px;
-  color:#b98d72;
+  color: @color7;
   font-size:24px;
   border: 1px solid transparent;
 }
 
-QMenu#topMenu::item:hover{
-  background-color:#57233a;
+QMenu#topMenu::item:hover,
+QMenu#topMenu::item:selected{
+  background-color: @color8;
 }
 
-QMenu#topMenu::item:selected{
-  background-color:#ae4951;
+/* 关于页面 */
+QWidget#infoWin{
+    background-color: @color2;
+    color: @color7;
+}
+QWidget#infoWin QFrame#mainFrame{
+    background-color: @color2;
+    border: none;
+    border-image: url(:/images/Resources/info-border.png) 1px no-repeat;
+}
+QWidget#infoWin QLabel#logoLabel{
+    image: url(:/images/Resources/logo-light-1024x768.png);
+}
+QWidget#infoWin QLabel{
+    color: @color7;
+    font: light 20px;
 }
 
 /* 主窗口slogan样式 */
 QLabel#welcomeSlogan{
-    color:#b98d72;
+    color: @color7;
     font-size:120px;
     font-weight:bold;
 }
@@ -75,18 +142,69 @@ QGraphicsView{
     border:none;
 }
 
+/* 新增电影对话框 */
+QWidget#addNewPage{
+    background-color:@color1;
+}
+
+QWidget#addNewPage QLabel{
+    color:@color7;
+}
+/* 路径选择 */
+QWidget#addNewPage QComboBox{
+    border:2px solid @color4;
+    border-radius: 2px;
+}
+QWidget#addNewPage QComboBox:editable{
+    background: @color3;
+    color: @color7;
+}
+QWidget#addNewPage QComboBox:on{
+    padding-top: 2px;
+    padding-left: 2px;
+}
+QWidget#addNewPage QComboBox:drop-down{
+    background-color: @color3;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+}
+QWidget#addNewPage QComboBox QAbstractItemView {
+    border: 1px solid @color4;
+    selection-background-color: @color5;
+}
+/* 电影名称 */
+QWidget#addNewPage QLineEdit{
+    border:2px solid @color4;
+    border-radius: 2px;
+    background: @color3;
+    color: @color7;
+    selection-background-color: @color5;
+}
+/* 标签 */
+QWidget#addNewPage QPushButton{
+    border:none;
+    background: @color3;
+    color: @color7;
+}
+QWidget#addNewPage QPushButton:hover,
+QWidget#addNewPage QPushButton:checked{
+    background: @color4;
+    color: @color8;
+}
+
 /* 搜索条件区域样式 */
 QWidget#searchPage QGroupBox{
-    background-color:#161b1f;
-    color:#b98d72;
+    background-color:@color2;
+    color: @color7;
     font-size:24px;
     font-weight:bold;
-    border:2px solid #57233a;
+    border:2px solid @color5;
     border-radius: 10px;
 }
 
 QWidget#searchPage QGroupBox QRadioButton{
-    color:#b98d72;
+    color: @color7;
 }
 
 QWidget#searchPage QGroupBox QRadioButton::indicator{
@@ -95,45 +213,42 @@ QWidget#searchPage QGroupBox QRadioButton::indicator{
     border-radius:8px;
     border-style: solid;
     border-width: 3px;
-    border-color: #b98d72;
+    border-color: @color5;
 }
 
-QWidget#searchPage QGroupBox QRadioButton::indicator:unchecked:hover {
-    background-color:#57233a;
+QWidget#searchPage QGroupBox QRadioButton::indicator:unchecked:hover,
+QWidget#searchPage QGroupBox QRadioButton::indicator:unchecked:pressed{
+    background-color: @color5;
 }
 
-QWidget#searchPage QGroupBox QRadioButton::indicator:unchecked:pressed {
-    background-color:#ae4951;
-}
-
-QWidget#searchPage QGroupBox QRadioButton::indicator::checked {
-    background-color:#ae4951;
+QWidget#searchPage QGroupBox QRadioButton::indicator::checked{
+    background-color: @color5;
 }
 
 /* 默认搜索结果区域样式 */
 QWidget#searchPage QScrollArea#resultArea{
-     background-color:#161b1f;
-     border:2px solid #57233a;
+     background-color: @color2;
+     border:2px solid @color5;
      border-radius: 10px;
 }
 
 /* 搜索结果区域滚动条样式 */
 QWidget#searchPage QScrollArea#resultArea QScrollBar:vertical{
-    border:2px solid #57233a;
+    border:2px solid @color5;
     border-radius: 8px;
-    background:#161b1f;
+    background: @color2;
     width:20px;
     margin:10px 0px 10px 0px;
 }
 
 QWidget#searchPage QScrollArea#resultArea QScrollBar:vertical:hover,
 QWidget#searchPage QScrollArea#resultArea QScrollBar:vertical:pressed{
-    border:2px solid #ae4951;
+    border:2px solid @color4;
 }
 
 QWidget#searchPage QScrollArea#resultArea QScrollBar::handle:vertical{
     border:none;
-    background:#ae4951;
+    background: @color5;
     min-height:30px;
     border-radius:4px;
     margin:0px 2px 0px 2px;
@@ -143,14 +258,14 @@ QWidget#searchPage QScrollArea#resultArea QScrollBar::add-line:vertical,
 QWidget#searchPage QScrollArea#resultArea QScrollBar::sub-line:vertical{
     height:0px;
     border:none;
-    background:#161b1f;
+    background: @color2;
     border-radius: 3px;
 }
 
 QWidget#searchPage QScrollArea#resultArea QScrollBar::add-page:vertical,
 QWidget#searchPage QScrollArea#resultArea QScrollBar::sub-page:vertical{
     border:none;
-    background:#161b1f;
+    background: @color2;
     border-radius: 3px;
 }
 
@@ -162,54 +277,54 @@ QWidget#searchPage QFrame#allResultCard{
 
 QWidget#searchPage QFrame#allResultCard QLabel#searchSummary{
     background:transparent;
-    color:#b98d72;
+    color: @color7;
     font-size:40px;
 }
 
-QWidget#searchPage QFrame#allResultCard QFrame{
-    background-color:#57233a;
+QWidget#searchPage QFrame#allResultCard QPushButton{
+    border-image: url(:/images/Resources/resultCard.png);
     border:none;
     border-radius:10px;
 }
 
-QWidget#searchPage QFrame#allResultCard QFrame QLabel[isTitle="false"]{
-    color:#b98d72;
+QWidget#searchPage QFrame#allResultCard QPushButton QLabel[isTitle="false"]{
+    color: @color7;
     border:none;
 }
 
-QWidget#searchPage QFrame#allResultCard QFrame QLabel[isTitle="true"]{
-    color:#b98d72;
+QWidget#searchPage QFrame#allResultCard QPushButton QLabel[isTitle="true"]{
+    color: @color7;
     font-size:30px;
     font-weight:bold;
 }
 
 /* 详情页面样式 */
 QWidget#detailPage QScrollArea{
-    background-color:#161b1f;
+    background-color: @color2;
     border:none;
 }
 
 QWidget#detailPage QFrame{
-    background-color:#161b1f;
+    background-color: @color2;
     border:none;
 }
 
 QWidget#detailPage QLabel#name{
     border:none;
-    color:#b98d72;
+    color: @color7;
     font-size:40px;
     font-weight:bold;
 }
 
 QWidget#detailPage QLabel{
     border:none;
-    color:#b98d72;
+    color: @color7;
     font-size:20px;
 }
 
 QWidget#detailPage QLabel#outlineTitle{
     border:none;
-    color:#ae4951;
+    color: @color5;
     font-size:20px;
 }
 
@@ -283,3 +398,33 @@ QHeaderView::section{
     color: @color7;
     padding-left: 4px;
 }
+
+/* 库页面按钮 */
+QWidget#libraryPage QToolButton{
+    border: none;
+}
+
+QWidget#libraryPage QToolButton#listButton{
+    image: url(:/icons/Resources/list-dark.png);
+}
+QWidget#libraryPage QToolButton#listButton:hover,
+QWidget#libraryPage QToolButton#listButton:pressed{
+    image: url(:/icons/Resources/list-light.png);
+}
+
+QWidget#libraryPage QToolButton#gridButton{
+    image: url(:/icons/Resources/grid-dark.png);
+}
+QWidget#libraryPage QToolButton#gridButton:hover,
+QWidget#libraryPage QToolButton#gridButton:pressed{
+    image: url(:/icons/Resources/grid-light.png);
+}
+
+QWidget#libraryPage QToolButton#refreshButton{
+    image: url(:/icons/Resources/refresh-dark.png);
+}
+QWidget#libraryPage QToolButton#refreshButton:hover,
+QWidget#libraryPage QToolButton#refreshButton:pressed{
+    image: url(:/icons/Resources/refresh-light.png);
+}
+

@@ -10,6 +10,7 @@
 library::library(QWidget *parent)
     : QWidget{parent}
 {
+    this->setObjectName("libraryPage");
     // 主竖直布局，上方是按钮，下方是所有文件
     QVBoxLayout *mainLayout = new QVBoxLayout();
     // 按钮水平布局
@@ -28,9 +29,11 @@ library::library(QWidget *parent)
     refreshButton->setObjectName("refreshButton");
     connect(refreshButton, SIGNAL(clicked(bool)), this, SLOT(refreshButtonClicked()));
 
+    buttonLyout->addStretch();
     buttonLyout->addWidget(listButton);
     buttonLyout->addWidget(gridButton);
     buttonLyout->addWidget(refreshButton);
+    buttonLyout->addStretch();
 
     // 展示区域
     list *lView = new list();

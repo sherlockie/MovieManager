@@ -45,32 +45,38 @@ MainWin::MainWin(QWidget *parent)
     topBarLayout->setContentsMargins(1, 1, 1, 1);
 
     QPushButton *menuButton = new QPushButton(topBarFrame);
+    menuButton->setObjectName("menuButton");
     //menuButton->setIcon(QIcon(":/icons/Resources/menu.png"));
     menuButton->setFixedSize(40, 40);
     initMenu();
     menuButton->setMenu(menu);
 
     QPushButton *homeButton = new QPushButton(topBarFrame);
+    homeButton->setObjectName("homeButton");
     //homeButton->setIcon(QIcon(":/icons/Resources/home.png"));
     homeButton->setFixedSize(40, 40);
     connect(homeButton, SIGNAL(clicked()), this, SLOT(homeButtonClicked()));
 
     QPushButton *libraryButton = new QPushButton(topBarFrame);
+    libraryButton->setObjectName("libraryButton");
     //libraryButton->setIcon(QIcon(":/icons/Resources/home.png"));
     libraryButton->setFixedSize(40, 40);
     connect(libraryButton, SIGNAL(clicked()), this, SLOT(libraryButtonClicked()));
 
     QPushButton *searchButton = new QPushButton(topBarFrame);
+    searchButton->setObjectName("searchButton");
     //searchButton->setIcon(QIcon(":/icons/Resources/search.png"));
     searchButton->setFixedSize(40, 40);
     connect(searchButton, SIGNAL(clicked()), this, SLOT(searchButtonClicked()));
 
     QPushButton *detailButton = new QPushButton(topBarFrame);
+    detailButton->setObjectName("detailButton");
     //detailButton->setIcon(QIcon(":/icons/Resources/details.png"));
     detailButton->setFixedSize(40, 40);
     connect(detailButton, SIGNAL(clicked()), this, SLOT(detailButtonClicked()));
 
     QPushButton *closeButton = new QPushButton(topBarFrame);
+    closeButton->setObjectName("closeButton");
     //closeButton->setIcon(QIcon(":/icons/Resources/close.png"));
     closeButton->setFixedSize(40, 40);
     connect(closeButton, SIGNAL(clicked()), this, SLOT(closeButtonClicked()));

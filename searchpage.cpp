@@ -127,16 +127,20 @@ void SearchPage::initSearchResult()
     QLabel *searchSummary = new QLabel(allResultCard);
     searchSummary->setObjectName("searchSummary");
     searchSummary->setText("共找到 4396 条结果：");
+    searchSummary->setMaximumHeight(50);
     QVBoxLayout *allResultCardyout = new QVBoxLayout();
     allResultCardyout->addWidget(searchSummary);
     // results blocks/cards
     for (int i=0; i < 10; ++i)
     {
-        QFrame *resultCard = new QFrame(allResultCard);
+        QPushButton *resultCard = new QPushButton(allResultCard);
+        resultCard->setMinimumHeight(330);
         // poster & details layout
         QHBoxLayout *cardLayout = new QHBoxLayout();
+        cardLayout->setContentsMargins(30, 15, 15, 15);
         // details: name/actors/main plots layout
         QVBoxLayout *detailsLayout = new QVBoxLayout();
+        detailsLayout->setAlignment(Qt::AlignLeft);
         // components
         QLabel *poster = new QLabel("海报", resultCard);
         const QPixmap &&posterimg = QPixmap(":/default/Resources/1.jpg");
@@ -147,6 +151,7 @@ void SearchPage::initSearchResult()
         actors->setProperty("isTitle", false);
         QLabel *outline = new QLabel("李（卡西·阿弗莱克饰）是一名颓废压抑的修理工，在得知哥哥乔伊（凯尔·钱德勒饰）"
                                      "去世的消息后，李回到了故乡-海边的曼彻斯特处理乔伊的后事。", resultCard);
+        outline->setFixedWidth(500);
         outline->setProperty("isTitle", false);
         // outline->adjustSize();
         outline->setWordWrap(true);

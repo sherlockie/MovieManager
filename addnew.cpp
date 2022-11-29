@@ -10,6 +10,7 @@
 
 AddNewDialog::AddNewDialog()
 {
+    this->setObjectName("addNewPage");
     setWindowTitle(tr("添加新电影"));
     // this->resize(800, 450);
     this->setFixedSize(800, 450);
@@ -18,6 +19,7 @@ AddNewDialog::AddNewDialog()
     QVBoxLayout *mainLayout = new QVBoxLayout();
 
     QHBoxLayout *chooseFileLayout = new QHBoxLayout();
+    chooseFileLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     QLabel *chooseFileLabel = new QLabel("选择电影文件(夹)");
     chooseFileBox = new QComboBox();
     chooseFileBox->setEditable(true);
@@ -29,6 +31,7 @@ AddNewDialog::AddNewDialog()
     chooseFileLayout->addWidget(chooseFileBox, 1);
 
     QHBoxLayout *inputNameLayout = new QHBoxLayout();
+    inputNameLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     QLabel *inputNameLabel = new QLabel("电影名称");
     inputNameLine = new QLineEdit();
     inputNameLine->setPlaceholderText(tr("*必填"));
@@ -36,6 +39,7 @@ AddNewDialog::AddNewDialog()
     inputNameLayout->addWidget(inputNameLine, 1);
 
      QHBoxLayout *inputTypeLayout = new QHBoxLayout();
+     inputTypeLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
      QLabel *inputTypeLabel = new QLabel("电影类型");
      QList<QString> typeLNameList = {"未知", "动作", "爱情", "科幻", "剧情", "记录", "惊悚", "艺术", "搞笑", "音乐"};
      FlowLayout *typelayout = new FlowLayout();
@@ -43,43 +47,45 @@ AddNewDialog::AddNewDialog()
      allTypeList->setExclusive(false);  // 类型可以多选
      foreach(QString typeName, typeLNameList)
      {
-         QPushButton *typeButton = new QPushButton(typeName+"+");
+         QPushButton *typeButton = new QPushButton(typeName);
          typeButton->setCheckable(true);
          allTypeList->addButton(typeButton);
          typelayout->addWidget(typeButton);
-         connect(typeButton, SIGNAL(clicked(bool)), this, SLOT(commonButtonTagClicked()));
+         //connect(typeButton, SIGNAL(clicked(bool)), this, SLOT(commonButtonTagClicked()));
      }
      inputTypeLayout->addWidget(inputTypeLabel);
      inputTypeLayout->addLayout(typelayout, 1);
 
     QHBoxLayout *inputAgeLayout = new QHBoxLayout();
+    inputAgeLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     QLabel *inputAgeLabel = new QLabel("电影年代");
     QList<QString> ageLNameList = {"未知", "2022", "2021", "2020", "2019", "2010年代", "2000年代", "90年代", "80年代", "70年代", "60年代", "更早"};
     FlowLayout *agelayout = new FlowLayout();
     allAgeList = new QButtonGroup();
     foreach(QString ageName, ageLNameList)
     {
-        QPushButton *ageButton = new QPushButton(ageName+"+");
+        QPushButton *ageButton = new QPushButton(ageName);
         ageButton->setCheckable(true);
         allAgeList->addButton(ageButton);
         agelayout->addWidget(ageButton);
-        connect(ageButton, SIGNAL(clicked(bool)), this, SLOT(commonButtonTagClicked()));
+        //connect(ageButton, SIGNAL(clicked(bool)), this, SLOT(commonButtonTagClicked()));
     }
     inputAgeLayout->addWidget(inputAgeLabel);
     inputAgeLayout->addLayout(agelayout, 1);
 
     QHBoxLayout *inputRegionLayout = new QHBoxLayout();
+    inputRegionLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     QLabel *inputRegionLabel = new QLabel("电影地区");
     QList<QString> regionLNameList = {"未知", "华语", "欧美", "韩国", "中国大陆", "中国台湾", "中国台湾", "日本", "美国", "意大利"};
     FlowLayout *regionlayout = new FlowLayout();
     allRegionList = new QButtonGroup();
     foreach(QString regionName, regionLNameList)
     {
-        QPushButton *regionButton = new QPushButton(regionName+"+");
+        QPushButton *regionButton = new QPushButton(regionName);
         allRegionList->addButton(regionButton);
         regionButton->setCheckable(true);
         regionlayout->addWidget(regionButton);
-        connect(regionButton, SIGNAL(clicked(bool)), this, SLOT(commonButtonTagClicked()));
+        //connect(regionButton, SIGNAL(clicked(bool)), this, SLOT(commonButtonTagClicked()));
     }
     inputRegionLayout->addWidget(inputRegionLabel);
     inputRegionLayout->addLayout(regionlayout, 1);
@@ -132,16 +138,4 @@ void AddNewDialog::confirmButtonClicked()
         if (button->isChecked()) filmRegion.append(button->text());
     }
     qDebug() << filmPath << "/" << filmName << "/" << filmType << "/" << filmAge << "/" << filmRegion;
-}
-
-void AddNewDialog::commonButtonTagClicked()
-{
-    auto button = qobject_cast<QPushButton *>(sender());
-    if (button->isChecked())
-    {
-        button->setChecked(false);
-    } else
-    {
-        button->setChecked(true);
-    }
 }
