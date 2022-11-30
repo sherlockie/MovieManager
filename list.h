@@ -2,6 +2,9 @@
 #define LIST_H
 
 #include <QWidget>
+#include <QLabel>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 
 class list : public QWidget
 {
@@ -10,6 +13,12 @@ public:
     explicit list(QWidget *parent = nullptr);
 
 signals:
+
+public slots:
+    void showPage(int p);
+
+private:
+    QLabel *tmp;
 
 };
 

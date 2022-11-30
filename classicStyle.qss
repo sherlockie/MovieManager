@@ -400,6 +400,10 @@ QHeaderView::section{
 }
 
 /* 库页面按钮 */
+QWidget#libraryPage{
+     background-color: @color2;
+}
+
 QWidget#libraryPage QToolButton{
     border: none;
 }
@@ -426,5 +430,36 @@ QWidget#libraryPage QToolButton#refreshButton{
 QWidget#libraryPage QToolButton#refreshButton:hover,
 QWidget#libraryPage QToolButton#refreshButton:pressed{
     image: url(:/icons/Resources/refresh-light.png);
+}
+
+/* 库页页面分页控制按钮 */
+QWidget#libraryPage QLabel{
+    color:@color7;
+}
+
+QWidget#libraryPage QPushButton{
+    border: none;
+    border-radius: 2px;
+    background-color: @color2;
+    color:@color7;
+}
+
+QWidget#libraryPage QPushButton[currentPage="true"]{
+    background-color: @color4;
+    color:@color8;
+}
+
+QWidget#libraryPage QPushButton:hover,
+QWidget#libraryPage QPushButton:pressed{
+    background-color: @color3;
+    color:@color8;
+}
+
+QWidget#libraryPage QLineEdit{
+    border:1px solid @color4;
+    border-radius: 2px;
+    background: @color3;
+    color: @color7;
+    selection-background-color: @color5;
 }
 
