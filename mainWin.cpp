@@ -106,10 +106,10 @@ MainWin::MainWin(QWidget *parent)
     pageStack->addWidget(libraryPage);
     pageStack->addWidget(searchpage);
     pageStack->addWidget(detailpage);
+    connect(searchpage, SIGNAL(cardClickedSignal(int)), this, SLOT(cardClicked(int)));
 
 //    mainLayout->addWidget(pageList);
     mainLayout->addWidget(pageStack);
-//    connect(pageList, SIGNAL(currentItemChanged(int)), pageStack, SLOT(setCurrentIndex(int)));
 
     this->setLayout(mainLayout);
 }
@@ -136,6 +136,12 @@ void MainWin::searchButtonClicked()
 
 void MainWin::detailButtonClicked()
 {
+    pageStack->setCurrentIndex(3);
+}
+
+void MainWin::cardClicked(int i)
+{
+    qDebug() << "id:" << i;
     pageStack->setCurrentIndex(3);
 }
 

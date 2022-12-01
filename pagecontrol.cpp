@@ -62,7 +62,7 @@ void pageControl::setCurrentPage(int _pageNum)
 {
     pageNum = _pageNum;
     // 所给页码异常，大于最大值
-    if(_pageNum > pageCount)
+    if(_pageNum >= pageCount)
     {
         pageNum = pageCount;
         lastPageButton->setProperty("currentPage", true);

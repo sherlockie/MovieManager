@@ -24,6 +24,7 @@ public slots:
     void settingActionTriggered();
     void detailButtonClicked();
     void libraryButtonClicked();
+    void cardClicked(int i);
 
 private:
     QRect m_areaMoveable;

@@ -18,6 +18,7 @@ public:
     void initSearchResult();
 
 signals:
+    void cardClickedSignal(int);
 public slots:
     void allTypeClicked();
     void allAgeClicked();
@@ -26,6 +27,7 @@ public slots:
     void commonAgeClicked();
     void commonRegionClicked();
     void confirmButtonClicked();
+    void cardClicked();
 
 private:
     QList<QRadioButton *> typeButtonList;

@@ -5,6 +5,9 @@
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QTableView>
+#include <QStandardItemModel>
+#include <QHeaderView>
 
 class list : public QWidget
 {
@@ -18,7 +21,8 @@ public slots:
     void showPage(int p);
 
 private:
-    QLabel *tmp;
+    QStandardItemModel *tableModel;
+    QTableView *tableView;
 
 };
 

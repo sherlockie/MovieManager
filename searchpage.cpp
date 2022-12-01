@@ -134,6 +134,9 @@ void SearchPage::initSearchResult()
     for (int i=0; i < 10; ++i)
     {
         QPushButton *resultCard = new QPushButton(allResultCard);
+        // 给按钮设置一个索引，当按钮被点击时根据索引就可以在搜索结果中
+        // 找到电影信息(唯一id),详情页面根据这个id就可以知道展示哪个电影
+        resultCard->setProperty("idx", i);
         resultCard->setMinimumHeight(330);
         // poster & details layout
         QHBoxLayout *cardLayout = new QHBoxLayout();
@@ -162,6 +165,7 @@ void SearchPage::initSearchResult()
         cardLayout->addLayout(detailsLayout, 1);
 
         resultCard->setLayout(cardLayout);
+        connect(resultCard, SIGNAL(clicked(bool)), this, SLOT(cardClicked()));
         allResultCardyout->addWidget(resultCard);
     }
     allResultCard->setLayout(allResultCardyout);
@@ -262,4 +266,11 @@ void SearchPage::confirmButtonClicked()
        qDebug() << s;
     }
     initSearchResult();
+}
+
+void SearchPage::cardClicked()
+{
+    QPushButton *btn = (QPushButton*)sender();
+    int idx = btn->property("idx").toInt();
+    emit cardClickedSignal(idx);
 }

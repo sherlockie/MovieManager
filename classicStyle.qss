@@ -23,7 +23,7 @@ QFrame#topBarFrame QPushButton::menu-indicator{
     background-color: @color3;
     subcontrol-position: right center;
     subcontrol-origin: padding;
-    left: 2px;
+    left: 14px;
 }
 
 QFrame#topBarFrame QPushButton#homeButton{
@@ -108,7 +108,8 @@ QMenu#topMenu::item{
 
 QMenu#topMenu::item:hover,
 QMenu#topMenu::item:selected{
-  background-color: @color8;
+  background-color: @color3;
+  color: @color8;
 }
 
 /* 关于页面 */
@@ -285,6 +286,11 @@ QWidget#searchPage QFrame#allResultCard QPushButton{
     border-image: url(:/images/Resources/resultCard.png);
     border:none;
     border-radius:10px;
+}
+
+QWidget#searchPage QFrame#allResultCard QPushButton:hover,
+QWidget#searchPage QFrame#allResultCard QPushButton:pressed{
+    border:1px solid @color4;
 }
 
 QWidget#searchPage QFrame#allResultCard QPushButton QLabel[isTitle="false"]{
