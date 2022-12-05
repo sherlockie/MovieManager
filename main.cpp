@@ -1,6 +1,8 @@
 #include "mainWin.h"
 
 #include <QApplication>
+#include <QSqlDatabase>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
@@ -19,8 +21,18 @@ int main(int argc, char *argv[])
         qssStyle.replace("@color8", "#F8F8F8");
         app.setStyleSheet(qssStyle);
     }
-
     classicStyleQss.close();
+    // 数据库
+    QSqlDatabase dbConn = QSqlDatabase::database("SQLITE");
+    dbConn.setDatabaseName(app.applicationDirPath() + "/mb.db");
+    if (dbConn.open())
+    {
+        qDebug() << "数据库创建成功";
+    } else
+    {
+        qDebug() << "数据库创建异常";
+    }
+    // 开始
     MainWin w;
     w.show();
     return app.exec();
